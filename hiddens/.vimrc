@@ -22,10 +22,14 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'somini/vim-autoclose'
 Plugin 'itchyny/lightline.vim'
 Plugin 'ervandew/supertab'
-Plugin 'itchyny/vim-cursorword'
+Plugin 'yggdroot/indentline'
+Plugin 'dominikduda/vim_current_word'
+
+"Plugin 'itchyny/vim-cursorword'
 Plugin 'jarrodctaylor/vim-256-color-schemes'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'severin-lemaignan/vim-minimap'
+"Plugin 'qstrahl/vim-matchmaker'
 Plugin 'tc50cal/vim-terminal'
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'terryma/vim-multiple-cursors'
@@ -49,6 +53,7 @@ filetype plugin indent on    " required
 filetype indent plugin on
 syntax enable
 set autoindent
+set mouse=a
 set expandtab
 set tabstop=4 
 set softtabstop=4
@@ -63,8 +68,13 @@ set laststatus=2
 set noshowmode
 colorscheme Tomorrow-Night-Bright
 map <C-n> :NERDTreeToggle<CR>
+
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'landscape',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'absolutepath', 'modified' ] ]
+      \ }
       \ }
 
 nnoremap <leader><space> :nohlsearch<CR>
@@ -98,3 +108,13 @@ noremap <leader>6 6gt
 noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
+" F11 to toggle paste mode
+map <F11> :set invpaste<CR>
+set pastetoggle=<F2>
+vnoremap // y/<C-R>"<CR>
+vnoremap co "hy:%s/<C-r>h//gc<left><left><left>
+
+
+"let g:vim_current_word#highlight_twins = 1
+hi CurrentWord ctermbg=18
+hi CurrentWordTwins ctermbg=237
