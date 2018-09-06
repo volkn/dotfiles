@@ -62,7 +62,8 @@ set noshowmode
 "colorscheme mycontrast
 "colorscheme cobalt
 "colorscheme simple_dark
-colorscheme sceaduhelm
+"colorscheme awesome
+colorscheme awesome
 
 "" NERDTree configuration
 let g:NERDTreeChDirMode=2
