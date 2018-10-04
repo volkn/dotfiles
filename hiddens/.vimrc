@@ -1,47 +1,70 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+"set nocompatible              " be iMproved, required
+"filetype off                  " required
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-airline/vim-airline'
-Plugin 'kien/ctrlp.vim'
-Plugin 'sonph/onehalf'
-Plugin 'joshdick/onedark.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tomasr/molokai'
-Plugin 'wombat256.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'somini/vim-autoclose'
-"Plugin 'itchyny/lightline.vim'
-"Plugin 'ervandew/supertab'
-Plugin 'yggdroot/indentline'
-Plugin 'dominikduda/vim_current_word'
-Plugin 'Valloric/YouCompleteMe'
-"Plugin 'itchyny/vim-cursorword'
-Plugin 'terryma/vim-smooth-scroll'
-Plugin 'severin-lemaignan/vim-minimap'
-Plugin 'tc50cal/vim-terminal'
-Plugin 'chriskempson/tomorrow-theme'
-
-call vundle#end()            " required
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'somini/vim-autoclose'
+Plug 'yggdroot/indentline'
+Plug 'dominikduda/vim_current_word'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'scrooloose/syntastic'
+Plug 'valloric/youcompleteme'
+"Plug 'ervandew/supertab'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'wombat256.vim'
+"Plug 'joshdick/onedark.vim'
+"Plug 'sonph/onehalf'
+"Plug 'tc50cal/vim-terminal'
+"Plug 'chriskempson/tomorrow-theme'
+"Plug 'severin-lemaignan/vim-minimap'
+"Plug 'itchyny/vim-cursorword'
+"Plug 'itchyny/lightline.vim'
+call plug#end()            " required
 filetype plugin indent on    " required
 
 "filetype indent plugin on
 syntax on
+set encoding=utf-8
 set autoindent
 set mouse=a
+
 set expandtab
 set tabstop=4 
-set softtabstop=4
+set softtabstop=0
+set shiftwidth=4
 
+set clipboard=unnamedplus
+
+""go
+autocmd FileType go setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+
+""python
+augroup vimrc-python
+  autocmd!
+  autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+      \ formatoptions+=croq softtabstop=4
+augroup END
+
+
+""javascript
+augroup vimrc-javascript
+  autocmd!
+  autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+augroup END
+
+""html
 autocmd Filetype html setlocal ts=2 sw=2 expandtab
-autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
+
+
+"autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+"autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab softtabstop=4
+"autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8 colorcolumn=79
 
 set number
 set relativenumber
@@ -62,7 +85,6 @@ set noshowmode
 "colorscheme mycontrast
 "colorscheme cobalt
 "colorscheme simple_dark
-"colorscheme awesome
 colorscheme awesome
 
 "" NERDTree configuration
@@ -130,6 +152,7 @@ let g:ycm_add_preview_to_completeopt = 0
 set completeopt-=preview
 let g:ycm_key_list_stop_completion = ['<Enter>']
 
+"let g:ycm_auto_trigger = 1
 
 
 " vim-airline
@@ -156,7 +179,7 @@ endif
 "let g:airline_symbols.linenr = '¶'
 "let g:airline_symbols.branch = '⎇'
 "let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " airline symbols
 let g:airline_left_sep = ''
@@ -164,8 +187,20 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.branch = ''
+"let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.linenr = '«'
 
+"syntastics
+"
+let g:syntastic_python_checkers = ['pylint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
